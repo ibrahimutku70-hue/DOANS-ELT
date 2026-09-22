@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI & Automation - Geleceğin Otomasyon Sistemleri</title>
+    <title>AI, ESP32 & Arduino Otomasyon Sistemleri</title>
     <!-- Font Awesome İkonları -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fontları -->
@@ -11,12 +11,13 @@
     
     <style>
         :root {
-            --bg-dark: #0a0a12;
-            --card-bg: rgba(20, 20, 35, 0.6);
+            --bg-dark: #07070d;
+            --card-bg: rgba(18, 18, 32, 0.75);
             --primary-glow: #00f0ff;
             --secondary-glow: #7000ff;
             --text-color: #f0f4f8;
-            --text-muted: #94a3b8;
+            --text-muted: #a0aec0;
+            --accent-border: rgba(0, 240, 255, 0.25);
         }
 
         * {
@@ -33,7 +34,7 @@
             line-height: 1.6;
         }
 
-        /* Arka Plan Efekti */
+        /* Arka Plan Glow Efekti */
         .glow-bg {
             position: fixed;
             top: 0;
@@ -41,8 +42,8 @@
             width: 100vw;
             height: 100vh;
             background: 
-                radial-gradient(circle at 10% 20%, rgba(0, 240, 255, 0.12) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(112, 0, 255, 0.12) 0%, transparent 40%);
+                radial-gradient(circle at 15% 15%, rgba(0, 240, 255, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(112, 0, 255, 0.12) 0%, transparent 45%);
             z-index: -1;
             pointer-events: none;
         }
@@ -53,12 +54,12 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 8%;
-            background: rgba(10, 10, 18, 0.8);
+            background: rgba(7, 7, 13, 0.85);
             backdrop-filter: blur(15px);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .logo {
@@ -111,18 +112,18 @@
 
         /* Hero Bölümü */
         .hero {
-            padding: 100px 8% 60px;
+            padding: 90px 8% 50px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             align-items: center;
             gap: 40px;
-            min-height: 85vh;
+            min-height: 80vh;
         }
 
         .hero-text h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 3.2rem;
-            line-height: 1.2;
+            font-size: 3rem;
+            line-height: 1.25;
             margin-bottom: 20px;
         }
 
@@ -142,19 +143,18 @@
             position: relative;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--accent-border);
         }
 
         .hero-image img {
             width: 100%;
             height: auto;
             display: block;
-            border-radius: 20px;
         }
 
-        /* Özellikler */
-        .features {
+        /* Teknolojiler ve Görsel Bölümü */
+        .tech-section {
             padding: 80px 8%;
             text-align: center;
         }
@@ -162,54 +162,88 @@
         .section-title {
             font-family: 'Orbitron', sans-serif;
             font-size: 2.2rem;
-            margin-bottom: 50px;
+            margin-bottom: 15px;
         }
 
-        .grid {
+        .section-subtitle {
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 50px;
+            font-size: 1rem;
+        }
+
+        .tech-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
         }
 
-        .card {
+        .tech-card {
             background: var(--card-bg);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 35px 25px;
+            border-radius: 20px;
+            overflow: hidden;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
             text-align: left;
+            display: flex;
+            flex-direction: column;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
+        .tech-card:hover {
+            transform: translateY(-8px);
             border-color: var(--primary-glow);
-            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15);
+            box-shadow: 0 12px 35px rgba(0, 240, 255, 0.15);
         }
 
-        .card-icon {
-            font-size: 2.5rem;
+        .tech-card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .tech-card-body {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .tech-badge {
+            align-self: flex-start;
+            background: rgba(0, 240, 255, 0.1);
             color: var(--primary-glow);
-            margin-bottom: 20px;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(0, 240, 255, 0.2);
         }
 
-        .card h3 {
+        .tech-card h3 {
+            font-family: 'Orbitron', sans-serif;
             font-size: 1.3rem;
             margin-bottom: 12px;
+            color: #fff;
         }
 
-        .card p {
+        .tech-card p {
             color: var(--text-muted);
             font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         /* YouTube Yönlendirme Alanı */
         .yt-section {
             margin: 60px 8%;
             padding: 50px;
-            background: linear-gradient(135deg, rgba(20, 20, 35, 0.8), rgba(112, 0, 255, 0.15));
+            background: linear-gradient(135deg, rgba(18, 18, 32, 0.9), rgba(112, 0, 255, 0.2));
             border-radius: 24px;
-            border: 1px solid rgba(112, 0, 255, 0.3);
+            border: 1px solid rgba(112, 0, 255, 0.4);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -274,11 +308,11 @@
     <!-- Navigasyon -->
     <nav>
         <div class="logo">
-            <i class="fa-solid fa-microchip"></i> NEXUS AI
+            <i class="fa-solid fa-microchip"></i> NEXUS AI & IoT
         </div>
         <ul class="nav-links">
             <li><a href="#home">Ana Sayfa</a></li>
-            <li><a href="#features">Çözümler</a></li>
+            <li><a href="#technologies">Teknolojiler</a></li>
             <li><a href="#youtube">Kanalımız</a></li>
         </ul>
         <a href="https://youtube.com/@doans-e3h?si=aKjoEwmxg2NGa_bo" target="_blank" class="btn-glow">
@@ -289,10 +323,10 @@
     <!-- Hero Bölümü -->
     <section class="hero" id="home">
         <div class="hero-text">
-            <h1>Yapay Zeka ile <span>Geleceğin Otomasyonu</span></h1>
-            <p>İş akışlarınızı otonom hale getirin. Süreçlerinizi akıllı yapay zeka ajanları ile hızlandırın ve dijital dönüşümün öncüsü olun.</p>
+            <h1>ESP32, Arduino & <span>Yapay Zeka Otomasyonu</span></h1>
+            <p>Mikrodenetleyiciler ile fiziksel dünyayı kodlayın, yapay zeka modelleriyle birleştirerek otonom akıllı sistemler inşa edin.</p>
             <a href="https://youtube.com/@doans-e3h?si=aKjoEwmxg2NGa_bo" target="_blank" class="btn-glow">
-                İçerikleri İncele <i class="fa-brands fa-youtube"></i>
+                Projeleri İzle <i class="fa-brands fa-youtube"></i>
             </a>
         </div>
         <div class="hero-image">
@@ -300,42 +334,60 @@
         </div>
     </section>
 
-    <!-- Özellikler -->
-    <section class="features" id="features">
-        <h2 class="section-title">Akıllı Otomasyon Çözümleri</h2>
-        <div class="grid">
-            <div class="card">
-                <div class="card-icon"><i class="fa-solid fa-robot"></i></div>
-                <h3>Otonom Ajanlar</h3>
-                <p>İnsan müdahalesine gerek kalmadan karar alabilen ve görevleri tamamlayan yapay zeka botları.</p>
+    <!-- Donanım ve Otomasyon Teknolojileri -->
+    <section class="tech-section" id="technologies">
+        <h2 class="section-title">Donanım & Akıllı Sistemler</h2>
+        <p class="section-subtitle">Gelişmiş mikrodenetleyiciler ve sinir ağları ile geleceğin otomasyon mimarisini keşfedin.</p>
+
+        <div class="tech-grid">
+            
+            <!-- ESP32 Kartı -->
+            <div class="tech-card">
+                <img src="watermarked_img_4274455839668804020.jpg" alt="ESP32 IoT Modülü" class="tech-card-img">
+                <div class="tech-card-body">
+                    <span class="tech-badge">Wi-Fi & Bluetooth</span>
+                    <h3>ESP32 IoT Mimarisi</h3>
+                    <p>ESP32, dahili Wi-Fi ve Çift Modlu Bluetooth bağlantısıyla uç cihazlarda (Edge Computing) yapay zeka ve otomasyon için ideal bir karttır. Sensör verilerini anlık olarak işleyip bulut sunuculara aktarabilir ve kameralı projelerde (ESP32-CAM) görüntü işleme yapabilir.</p>
+                </div>
             </div>
-            <div class="card">
-                <div class="card-icon"><i class="fa-solid fa-network-wired"></i></div>
-                <h3>İş Akışı Entegrasyonu</h3>
-                <p>Mevcut yazılımlarınızı tek bir akıllı otomasyon ağı altında birleştirin ve verimliliği artırın.</p>
+
+            <!-- Arduino Kartı -->
+            <div class="tech-card">
+                <img src="watermarked_img_11635642181879373057.jpg" alt="Arduino Prototipe Kartı" class="tech-card-img">
+                <div class="tech-card-body">
+                    <span class="tech-badge">Geliştirme & Sensörler</span>
+                    <h3>Arduino Sistemleri</h3>
+                    <p>Esnek ve açık kaynaklı yapısıyla Arduino, sensör entegrasyonu ve motor/röle kontrolünde prototipleme hızını artırır. Endüstriyel otomasyonda ilk aşama testler, fiziksel girdi okumaları ve otonom sistem kontrol mekanizmaları için temel oluşturur.</p>
+                </div>
             </div>
-            <div class="card">
-                <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
-                <h3>Veri Analitiği</h3>
-                <p>Büyük veri setlerini saniyeler içinde analiz edin ve tahminleyici yapay zeka çözümleri geliştirin.</p>
+
+            <!-- Yapay Zeka Otomasyonu -->
+            <div class="tech-card">
+                <img src="watermarked_img_14884461618832888830.jpg" alt="Yapay Zeka Otomasyonu" class="tech-card-img">
+                <div class="tech-card-body">
+                    <span class="tech-badge">Akıllı Algoritmalar</span>
+                    <h3>Yapay Zeka Otomasyonu</h3>
+                    <p>Derin öğrenme modelleri ve mikrodenetleyicilerden gelen canlı veriler birleşerek akıllı kararlar alan sistemler oluşturur. Kestirimci bakım, otonom robotik yönlendirmeler ve süreç optimizasyonu sayesinde sanayide verimlilik maksimum seviyeye çıkarılır.</p>
+                </div>
             </div>
+
         </div>
     </section>
 
     <!-- YouTube Bölümü -->
     <section class="yt-section" id="youtube">
         <div class="yt-info">
-            <h2>Yapay Zeka & Otomasyon Rehberi</h2>
-            <p>En son projeler, kodlama rehberleri ve otomasyon ipuçları için YouTube kanalımızı takip edin.</p>
+            <h2>Yapay Zeka & Otomasyon Kanalımız</h2>
+            <p>ESP32, Arduino ve AI otomasyon projelerinin kaynak kodları ve uygulama videoları için kanalımıza göz atın.</p>
         </div>
         <a href="https://youtube.com/@doans-e3h?si=aKjoEwmxg2NGa_bo" target="_blank" class="btn-yt">
-            <i class="fa-brands fa-youtube"></i> YouTube'da İzle
+            <i class="fa-brands fa-youtube"></i> YouTube Kanalına Git
         </a>
     </section>
 
     <!-- Footer -->
     <footer>
-        &copy; 2026 Nexus AI & Automation. Tüm Hakları Saklıdır.
+        &copy; 2026 Nexus AI, ESP32 & Arduino Otomasyon Sistemleri. Tüm Hakları Saklıdır.
     </footer>
 
 </body>
