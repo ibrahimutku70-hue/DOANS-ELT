@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI & IoT Otomasyon Sistemleri</title>
+    <title>Nexus AI & IoT | Akıllı Otomasyon Sistemleri</title>
     <!-- Font Awesome İkonları -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fontlar: Cormorant Garamond (Klasik/Zarif) & Plus Jakarta Sans (Modern Sans) -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Google Fontlar: Cormorant Garamond & Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         /* === TEMEL TASARIM VE RENK PALETİ === */
         :root {
-            --bg-body: #0d0e12;
-            --bg-card: rgba(22, 24, 31, 0.85);
+            --bg-body: #0a0b0e;
+            --bg-card: rgba(20, 22, 28, 0.85);
             --bg-card-border: rgba(255, 255, 255, 0.08);
             --accent-gold: #c5a059;
-            --accent-gold-soft: rgba(197, 160, 89, 0.15);
+            --accent-gold-soft: rgba(197, 160, 89, 0.12);
             --text-main: #f4f4f6;
             --text-muted: #9aa0a6;
             --font-classic: 'Cormorant Garamond', serif;
@@ -39,7 +39,7 @@
             padding-bottom: 50px;
         }
 
-        /* Zarif Arka Plan Aydınlatması */
+        /* Ambient Glow Arka Plan */
         .ambient-bg {
             position: fixed;
             top: 0;
@@ -53,10 +53,10 @@
             pointer-events: none;
         }
 
-        /* === HEADER (ÜST KISIM) === */
+        /* === HEADER === */
         header {
-            padding: 22px 5%;
-            background: rgba(13, 14, 18, 0.9);
+            padding: 20px 5%;
+            background: rgba(10, 11, 14, 0.92);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--bg-card-border);
             position: sticky;
@@ -81,33 +81,33 @@
             font-size: 1.2rem;
         }
 
-        /* === MOBİL UYUMLU KATEGORİ MENÜSÜ === */
+        /* === KATEGORİ MENÜSÜ === */
         .category-nav {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             padding: 14px 5%;
-            background: rgba(18, 20, 26, 0.95);
+            background: rgba(16, 18, 23, 0.95);
             overflow-x: auto;
             white-space: nowrap;
             border-bottom: 1px solid var(--bg-card-border);
-            scrollbar-width: none; /* Firefox */
+            scrollbar-width: none;
         }
 
         .category-nav::-webkit-scrollbar {
-            display: none; /* Chrome & Safari */
+            display: none;
         }
 
         .cat-btn {
             background: transparent;
             color: var(--text-muted);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 9px 20px;
+            padding: 9px 18px;
             border-radius: 30px;
             font-size: 0.85rem;
             font-weight: 500;
             letter-spacing: 0.5px;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -116,22 +116,22 @@
 
         .cat-btn.active, .cat-btn:hover {
             background: var(--accent-gold);
-            color: #0d0e12;
+            color: #0a0b0e;
             border-color: var(--accent-gold);
             font-weight: 600;
             box-shadow: 0 4px 15px rgba(197, 160, 89, 0.25);
         }
 
-        /* === İÇERİK ALANLARI VE GEÇİŞLER === */
+        /* === KONTEYNER & SAYFALAR === */
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .page-content {
             display: none;
-            padding: 30px 5%;
-            animation: fadeIn 0.5s ease;
+            padding: 25px 5%;
+            animation: fadeIn 0.4s ease;
         }
 
         .page-content.active {
@@ -143,19 +143,19 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* === KART TASARIMLARI === */
+        /* === KART VE GÖRSEL TASARIMLARI === */
         .content-card {
             background: var(--bg-card);
             border: 1px solid var(--bg-card-border);
-            border-radius: 12px;
+            border-radius: 14px;
             overflow: hidden;
             margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
         .image-container {
             width: 100%;
-            height: 240px;
+            height: 250px;
             overflow: hidden;
             position: relative;
             background: #12141a;
@@ -194,7 +194,6 @@
             font-family: var(--font-classic);
             font-size: 1.8rem;
             font-weight: 600;
-            letter-spacing: 0.5px;
             margin-bottom: 12px;
             color: #ffffff;
         }
@@ -204,6 +203,129 @@
             font-size: 0.95rem;
             line-height: 1.8;
             font-weight: 300;
+            margin-bottom: 15px;
+        }
+
+        /* === İSTATİSTİK BÖLÜMÜ (yeni) === */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+            border: 1px solid var(--bg-card-border);
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-family: var(--font-classic);
+            font-size: 1.6rem;
+            color: var(--accent-gold);
+        }
+
+        .stat-item p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* === ÖNE ÇIKAN ÖZELLİK İKONLARI (yeni) === */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .feature-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--bg-card-border);
+            padding: 18px;
+            border-radius: 10px;
+            transition: border-color 0.3s;
+        }
+
+        .feature-box:hover {
+            border-color: var(--accent-gold);
+        }
+
+        .feature-box i {
+            color: var(--accent-gold);
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-box h4 {
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .feature-box p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        /* === TEKNOLOJİ ETİKETLERİ (yeni) === */
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+        }
+
+        /* === SSS AKORDEON (yeni) === */
+        .faq-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--bg-card-border);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .faq-title {
+            padding: 15px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-title i {
+            color: var(--accent-gold);
+            transition: transform 0.3s;
+        }
+
+        .faq-answer {
+            padding: 0 15px 15px 15px;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            display: none;
+            line-height: 1.6;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        .faq-item.open .faq-title i {
+            transform: rotate(180deg);
         }
 
         /* === BUTONLAR === */
@@ -216,31 +338,30 @@
             background: transparent;
             color: var(--accent-gold);
             border: 1px solid var(--accent-gold);
-            padding: 14px;
+            padding: 13px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             letter-spacing: 1px;
-            margin-top: 20px;
+            margin-top: 15px;
             transition: all 0.3s ease;
         }
 
         .btn-action:hover, .btn-action:active {
             background: var(--accent-gold);
-            color: #0d0e12;
+            color: #0a0b0e;
             box-shadow: 0 4px 20px rgba(197, 160, 89, 0.2);
         }
 
         /* === FOOTER === */
         footer {
             text-align: center;
-            padding: 25px 5%;
+            padding: 30px 5%;
             font-size: 0.8rem;
             color: var(--text-muted);
             border-top: 1px solid var(--bg-card-border);
             margin-top: 40px;
-            letter-spacing: 0.5px;
         }
     </style>
 </head>
@@ -251,11 +372,11 @@
     <!-- Header -->
     <header>
         <div class="logo">
-            <i class="fa-solid fa-microchip"></i> OTOMASYON SİSTEMLERİ
+            <i class="fa-solid fa-microchip"></i> NEXUS AI & IoT
         </div>
     </header>
 
-    <!-- Mobil Kategori Menüsü -->
+    <!-- Navigasyon -->
     <nav class="category-nav">
         <button class="cat-btn active" onclick="openCategory(event, 'home')">
             <i class="fa-solid fa-compass"></i> Ana Sayfa
@@ -268,6 +389,9 @@
         </button>
         <button class="cat-btn" onclick="openCategory(event, 'ai')">
             <i class="fa-solid fa-brain"></i> Yapay Zeka
+        </button>
+        <button class="cat-btn" onclick="openCategory(event, 'faq')">
+            <i class="fa-solid fa-circle-question"></i> SSS
         </button>
         <button class="cat-btn" onclick="openCategory(event, 'youtube')">
             <i class="fa-brands fa-youtube"></i> Kanalımız
@@ -284,10 +408,46 @@
                 <div class="card-body">
                     <span class="badge">Gelişmiş Teknolojiler</span>
                     <h2>Akıllı Otomasyon Ekosistemi</h2>
-                    <p>Mühendislik ve yazılımın kesişim noktasında; ESP32, Arduino ve Yapay Zeka mimarilerini tek bir çatı altında birleştiriyoruz. Üst menüyü kullanarak projelerimiz ve teknik altyapılarımız hakkında detaylı bilgilere ulaşabilirsiniz.</p>
+                    <p>Mühendislik ve yazılımın kesişim noktasında; ESP32, Arduino ve Yapay Zeka mimarilerini tek bir çatı altında birleştiriyoruz. Endüstriyel otomasyondan akıllı ev çözümlerine kadar uçtan uca otonom sistemler geliştiriyoruz.</p>
+                    
+                    <!-- İstatistikler -->
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <h3>50+</h3>
+                            <p>Proje</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>%99.9</h3>
+                            <p>Kararlılık</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>< 10ms</h3>
+                            <p>Gecikme</p>
+                        </div>
+                    </div>
+
                     <a href="https://youtube.com/@doans-e3h?si=aKjoEwmxg2NGa_bo" target="_blank" class="btn-action">
                         <i class="fa-brands fa-youtube"></i> YOUTUBE KANALIMIZI İNCELEYİN
                     </a>
+                </div>
+            </div>
+
+            <!-- Öne Çıkan Özellikler -->
+            <div class="features-grid">
+                <div class="feature-box">
+                    <i class="fa-solid fa-bolt"></i>
+                    <h4>Gerçek Zamanlı İletişim</h4>
+                    <p>MQTT ve WebSocket protokolleri ile milisaniyeler içinde veri senkronizasyonu.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h4>Endüstriyel Güvenlik</h4>
+                    <p>Donanım seviyesinde şifreleme ve güvenli iletişim protokolleri.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fa-solid fa-microchip"></i>
+                    <h4>Uç Bilişim (Edge AI)</h4>
+                    <p>Verileri buluta göndermeden doğrudan mikrodenetleyici üzerinde işleme.</p>
                 </div>
             </div>
         </div>
@@ -299,9 +459,19 @@
                     <img src="watermarked_img_4274455839668804020.jpg" alt="ESP32 Modülü">
                 </div>
                 <div class="card-body">
-                    <span class="badge">Kablosuz Bağlantı</span>
+                    <span class="badge">Wi-Fi & Bluetooth</span>
                     <h2>ESP32 IoT Mimarisi</h2>
                     <p>ESP32, entegre Wi-Fi ve Çift Modlu Bluetooth teknolojisiyle donatılmış, yüksek performanslı 32-bit çift çekirdekli bir mikrodenetleyicidir. Düşük güç tüketimi ve güçlü işlem kapasitesi sayesinde, bulut tabanlı otomasyon ve uç cihazlarda (Edge Computing) standartları belirler.</p>
+                    
+                    <h4 style="color:#fff; margin-top:20px; font-size:1rem;">Kullanılan Teknolojiler & Protokoller:</h4>
+                    <div class="tech-tags">
+                        <span class="tag">FreeRTOS</span>
+                        <span class="tag">ESP-IDF</span>
+                        <span class="tag">MQTT</span>
+                        <span class="tag">HTTP/HTTPS</span>
+                        <span class="tag">BLE 5.0</span>
+                        <span class="tag">SPIFFS / LittleFS</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -316,6 +486,15 @@
                     <span class="badge">Donanım & Kontrol</span>
                     <h2>Arduino Geliştirme Platformu</h2>
                     <p>Arduino, fiziksel dünyayı hassas sensörler ve aktüatörler vasıtasıyla dijital ortama aktaran esnek bir mikrodenetleyici platformudur. Hızlı prototipleme imkanı sunarak endüstriyel kontrolden robotiğe kadar geniş bir alanda kararlı çözümler üretir.</p>
+                    
+                    <h4 style="color:#fff; margin-top:20px; font-size:1rem;">Desteklenen Entegrasyonlar:</h4>
+                    <div class="tech-tags">
+                        <span class="tag">I2C / SPI</span>
+                        <span class="tag">UART Serial</span>
+                        <span class="tag">PID Kontrol</span>
+                        <span class="tag">Step & Servo Sürücüler</span>
+                        <span class="tag">Analog Sensörler</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -329,18 +508,66 @@
                 <div class="card-body">
                     <span class="badge">Derin Öğrenme</span>
                     <h2>Yapay Zeka ve Otonom Sistemler</h2>
-                    <p>Gelişmiş yapay zeka ve sinir ağı modelleri, donanım seviyesinden gelen canlı verileri işleyerek sistemlerin kendi kendine karar vermesini sağlar. Kestirimci analizler ve otonom süreçler ile sistem verimliliği üst seviyeye taşınır.</p>
+                    <p>Gelişmiş yapay zeka ve sinir ağı modelleri, donanım seviyesinden gelen canlı verileri işleyerek sistemlerin kendi kendine karar vermesini sağlar. Kestirimci bakım ve otonom süreçler ile sistem verimliliği üst seviyeye taşınır.</p>
+
+                    <div class="features-grid" style="margin-top:15px;">
+                        <div class="feature-box">
+                            <i class="fa-solid fa-eye"></i>
+                            <h4>Görüntü İşleme</h4>
+                            <p>ESP32-CAM ve OpenCV ile gerçek zamanlı nesne tespiti.</p>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <h4>Kestirimci Bakım</h4>
+                            <p>Sensör verileriyle arızaları önceden tahmin etme.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- SAYFA 5: YOUTUBE -->
+        <!-- SAYFA 5: SSS (yeni) -->
+        <div id="faq" class="page-content">
+            <h2 style="font-family: var(--font-classic); font-size: 1.8rem; color:#fff; margin-bottom: 20px; text-align:center;">Sıkça Sorulan Sorular</h2>
+            
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-title">
+                    <span>ESP32 ile Arduino arasındaki fark nedir?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    ESP32'de dahili Wi-Fi, Bluetooth ve çift çekirdekli daha yüksek hızlı bir işlemci bulunur. Arduino (örneğin Uno) ise daha basit, kablosuz bağlantısı bulunmayan ancak hızlı prototipleme için ideal bir karttır.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-title">
+                    <span>Yapay Zeka mikrodenetleyici üzerinde çalışır mı?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Evet, TinyML (Tiny Machine Learning) teknolojileri sayesinde küçültülmüş yapay zeka modelleri doğrudan ESP32 gibi mikrodenetleyiciler üzerinde çalıştırılabilir.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-title">
+                    <span>Projelerin kaynak kodlarına nereden ulaşabilirim?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Tüm açık kaynaklı proje kodlarına ve devre şemalarına resmi YouTube kanalımızın açıklama kısmındaki bağlantılardan erişebilirsiniz.
+                </div>
+            </div>
+        </div>
+
+        <!-- SAYFA 6: YOUTUBE -->
         <div id="youtube" class="page-content">
             <div class="content-card">
                 <div class="card-body" style="text-align: center; padding: 40px 25px;">
-                    <i class="fa-brands fa-youtube" style="font-size: 3rem; color: var(--accent-gold); margin-bottom: 20px;"></i>
+                    <i class="fa-brands fa-youtube" style="font-size: 3.5rem; color: var(--accent-gold); margin-bottom: 20px;"></i>
                     <h2>YouTube Topluluğumuz</h2>
-                    <p>Proje anlatımları, devre şemaları ve kod incelemelerinin yer aldığı eğitim videolarımıza katılın.</p>
+                    <p>ESP32, Arduino ve Yapay Zeka otomasyon projelerinin kaynak kodları, kurulum rehberleri ve detaylı anlatımları için kanalımızı takip edebilirsiniz.</p>
                     <a href="https://youtube.com/@doans-e3h?si=aKjoEwmxg2NGa_bo" target="_blank" class="btn-action">
                         KANALA ABONE OL
                     </a>
@@ -351,11 +578,12 @@
 
     <!-- Footer -->
     <footer>
-        &copy; 2026 Otomasyon Sistemleri. Tüm hakları saklıdır.
+        &copy; 2026 Nexus AI & IoT Otomasyon Sistemleri. Tüm hakları saklıdır.
     </footer>
 
-    <!-- Sekme Geçiş Scripti -->
+    <!-- Scriptler -->
     <script>
+        // Kategori Değiştirme
         function openCategory(evt, categoryName) {
             var pageContent = document.getElementsByClassName("page-content");
             for (var i = 0; i < pageContent.length; i++) {
@@ -369,6 +597,12 @@
 
             document.getElementById(categoryName).classList.add("active");
             evt.currentTarget.classList.add("active");
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // SSS Açılır Menü
+        function toggleFaq(element) {
+            element.classList.toggle("open");
         }
     </script>
 </body>
